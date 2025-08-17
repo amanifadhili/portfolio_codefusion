@@ -22,15 +22,15 @@
   - [x] Verify it's clean (should be minimal)
 
 ### **1.3 Install Required Dependencies**
-- [ ] **Add Framer Motion:**
+- [x] **Add Framer Motion:**
   ```bash
   npm install framer-motion
   ```
-- [ ] **Add additional fonts (Inter/Poppins):**
+- [x] **Add additional fonts (Inter/Poppins):**
   ```bash
   npm install @fontsource/inter @fontsource/poppins
   ```
-- [ ] **Add Lucide React for icons:**
+- [x] **Add Lucide React for icons:**
   ```bash
   npm install lucide-react
   ```
