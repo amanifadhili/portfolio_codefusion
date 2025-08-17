@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export interface CardProps {
   children: React.ReactNode;
-  variant?: "default" | "elevated" | "outlined" | "gradient";
+  variant?: "default" | "elevated" | "outlined" | "gradient" | "glass";
   image?: string;
   imageAlt?: string;
   title?: string;
@@ -11,6 +11,8 @@ export interface CardProps {
   className?: string;
   onClick?: () => void;
   hoverEffect?: boolean;
+  padding?: "none" | "sm" | "md" | "lg";
+  shadow?: "none" | "sm" | "md" | "lg" | "xl";
 }
 
 const Card: React.FC<CardProps> = ({
@@ -23,16 +25,35 @@ const Card: React.FC<CardProps> = ({
   className = "",
   onClick,
   hoverEffect = true,
+  padding = "md",
+  shadow = "md",
 }) => {
   const baseClasses = "rounded-xl overflow-hidden transition-all duration-300";
 
   const variantClasses = {
-    default: "bg-white dark:bg-gray-800 shadow-md hover:shadow-lg",
-    elevated: "bg-white dark:bg-gray-800 shadow-xl hover:shadow-2xl",
+    default: "bg-white dark:bg-gray-800",
+    elevated: "bg-white dark:bg-gray-800",
     outlined:
       "bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700",
     gradient:
-      "bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-900",
+      "bg-gradient-to-br from-primary-50 to-secondary-50 dark:from-gray-800 dark:to-gray-900",
+    glass:
+      "bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border border-white/20 dark:border-gray-700/20",
+  };
+
+  const shadowClasses = {
+    none: "",
+    sm: "shadow-sm",
+    md: "shadow-md",
+    lg: "shadow-lg",
+    xl: "shadow-xl",
+  };
+
+  const paddingClasses = {
+    none: "",
+    sm: "p-4",
+    md: "p-6",
+    lg: "p-8",
   };
 
   const hoverClasses = hoverEffect
@@ -51,7 +72,7 @@ const Card: React.FC<CardProps> = ({
 
   return (
     <CardWrapper
-      className={`${baseClasses} ${variantClasses[variant]} ${hoverClasses} ${className}`}
+      className={`${baseClasses} ${variantClasses[variant]} ${shadowClasses[shadow]} ${hoverClasses} ${className}`}
       {...cardProps}
     >
       {image && (
@@ -61,25 +82,30 @@ const Card: React.FC<CardProps> = ({
             alt={imageAlt || title || "Card image"}
             className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
         </div>
       )}
 
       {(title || subtitle) && (
-        <div className="p-6 pb-4">
+        <div className={`${paddingClasses[padding]} pb-4`}>
           {title && (
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
               {title}
             </h3>
           )}
           {subtitle && (
-            <p className="text-gray-600 dark:text-gray-400 text-sm">
+            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
               {subtitle}
             </p>
           )}
         </div>
       )}
 
-      <div className={`${image || title || subtitle ? "px-6 pb-6" : "p-6"}`}>
+      <div
+        className={`${
+          image || title || subtitle ? `px-6 pb-6` : paddingClasses[padding]
+        }`}
+      >
         {children}
       </div>
     </CardWrapper>
