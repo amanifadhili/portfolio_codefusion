@@ -236,13 +236,13 @@
   - [x] Add page structure
 
 ### **7.2 Add Custom Hooks**
-- [ ] **Create `src/hooks/useScrollAnimation.ts`:**
-  - [ ] Intersection Observer for animations
-  - [ ] Scroll-triggered effects
+- [x] **Create `src/hooks/useScrollAnimation.ts`:**
+  - [x] Intersection Observer for animations
+  - [x] Scroll-triggered effects
 
-- [ ] **Create `src/hooks/useTheme.ts`:**
-  - [ ] Theme state management
-  - [ ] Theme toggle functionality
+- [x] **Create `src/hooks/useTheme.ts`:**
+  - [x] Theme state management
+  - [x] Theme toggle functionality
 
 ### **7.3 Testing & Optimization**
 - [ ] **Cross-browser testing:**
