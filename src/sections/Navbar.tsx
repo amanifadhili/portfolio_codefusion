@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown } from "lucide-react";
-import { useTheme } from "../hooks/useTheme";
+import { Menu, X } from "lucide-react";
+import { useCustomTheme } from "../hooks/useTheme";
 import ThemeToggle from "../components/ui/ThemeToggle";
 import Button from "../components/ui/Button";
 import Container from "../components/ui/Container";
@@ -13,7 +13,7 @@ export interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ className = "" }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const { isDark } = useTheme();
+  const { isDark } = useCustomTheme();
 
   // Navigation items
   const navItems = [
@@ -115,7 +115,12 @@ const Navbar: React.FC<NavbarProps> = ({ className = "" }) => {
 
             {/* Right side - Theme Toggle & CTA */}
             <div className="hidden lg:flex items-center space-x-4">
-              <ThemeToggle size="md" variant="minimal" />
+              <ThemeToggle
+                size="md"
+                variant="minimal"
+                isDark={isDark}
+                onToggle={() => {}}
+              />
               <Button
                 variant="primary"
                 size="sm"
@@ -127,7 +132,12 @@ const Navbar: React.FC<NavbarProps> = ({ className = "" }) => {
 
             {/* Mobile menu button */}
             <div className="lg:hidden flex items-center space-x-3">
-              <ThemeToggle size="sm" variant="minimal" />
+              <ThemeToggle
+                size="sm"
+                variant="minimal"
+                isDark={isDark}
+                onToggle={() => {}}
+              />
               <motion.button
                 className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
                 onClick={() => setIsOpen(!isOpen)}

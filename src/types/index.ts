@@ -1,7 +1,7 @@
 // CodeFusion Portfolio - Type Definitions
 // This file contains all TypeScript interfaces and type definitions for the application
 
-import { LucideIcon } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 // ============================================================================
 // CORE INTERFACES
@@ -494,13 +494,13 @@ export interface SocialLink {
 /**
  * Social media links collection
  */
-export interface SocialLinks {
-  linkedin: SocialLink;
-  twitter: SocialLink;
-  github: SocialLink;
-  youtube: SocialLink;
-  instagram: SocialLink;
-}
+// export interface SocialLinks {
+//   linkedin: SocialLink;
+//   twitter: SocialLink;
+//   github: SocialLink;
+//   youtube: SocialLink;
+//   instagram: SocialLink;
+// }
 
 /**
  * Company statistics
@@ -756,176 +756,5 @@ export type FunctionParameters<T> = T extends (...args: infer P) => any ? P : ne
 export type FunctionReturnType<T> = T extends (...args: any[]) => infer R ? R : never;
 
 // ============================================================================
-// EXPORT ALL TYPES
+// END OF TYPE DEFINITIONS
 // ============================================================================
-
-export type {
-  // Core interfaces
-  BaseEntity,
-  BaseContent,
-  
-  // Service interfaces
-  ServiceCategory,
-  ServicePricing,
-  Service,
-  ServiceFAQ,
-  ServiceCategoryInfo,
-  
-  // Portfolio interfaces
-  ProjectCategory,
-  ProjectStatus,
-  Project,
-  ProjectMetrics,
-  ProjectDocument,
-  ProjectCategoryInfo,
-  
-  // Technology interfaces
-  TechCategory,
-  ProficiencyLevel,
-  Technology,
-  TechCategoryInfo,
-  
-  // Testimonial interfaces
-  Testimonial,
-  SocialProof,
-  
-  // Team interfaces
-  TeamRole,
-  SkillLevel,
-  TeamSkill,
-  SocialLinks,
-  TeamMember,
-  
-  // Contact interfaces
-  ContactFormData,
-  ContactFormErrors,
-  ContactFormStatus,
-  ContactFormResponse,
-  
-  // Company interfaces
-  CompanyInfo,
-  ContactInfo,
-  SocialLink,
-  SocialLinks,
-  CompanyStats,
-  
-  // Navigation interfaces
-  NavigationMenuItem,
-  FooterLink,
-  FooterLinks,
-  
-  // Animation interfaces
-  AnimationConfig,
-  Breakpoints,
-  
-  // Color interfaces
-  ColorPalette,
-  Colors,
-  
-  // Form interfaces
-  FormValidationRules,
-  FormValidationConfig,
-  FormSubmissionConfig,
-  FormConfig,
-  
-  // SEO interfaces
-  SEOConfig,
-  
-  // Performance interfaces
-  PerformanceConfig,
-  
-  // Utility types
-  PartialBy,
-  RequiredBy,
-  PickBy,
-  OmitBy,
-  ComponentProps,
-  FunctionParameters,
-  FunctionReturnType,
-};
-
-// Default export for convenience
-export default {
-  // Core interfaces
-  BaseEntity,
-  BaseContent,
-  
-  // Service interfaces
-  ServiceCategory,
-  ServicePricing,
-  Service,
-  ServiceFAQ,
-  ServiceCategoryInfo,
-  
-  // Portfolio interfaces
-  ProjectCategory,
-  ProjectStatus,
-  Project,
-  ProjectMetrics,
-  ProjectDocument,
-  ProjectCategoryInfo,
-  
-  // Technology interfaces
-  TechCategory,
-  ProficiencyLevel,
-  Technology,
-  TechCategoryInfo,
-  
-  // Testimonial interfaces
-  Testimonial,
-  SocialProof,
-  
-  // Team interfaces
-  TeamRole,
-  SkillLevel,
-  TeamSkill,
-  SocialLinks,
-  TeamMember,
-  
-  // Contact interfaces
-  ContactFormData,
-  ContactFormErrors,
-  ContactFormStatus,
-  ContactFormResponse,
-  
-  // Company interfaces
-  CompanyInfo,
-  ContactInfo,
-  SocialLink,
-  SocialLinks,
-  CompanyStats,
-  
-  // Navigation interfaces
-  NavigationMenuItem,
-  FooterLink,
-  FooterLinks,
-  
-  // Animation interfaces
-  AnimationConfig,
-  Breakpoints,
-  
-  // Color interfaces
-  ColorPalette,
-  Colors,
-  
-  // Form interfaces
-  FormValidationRules,
-  FormValidationConfig,
-  FormSubmissionConfig,
-  FormConfig,
-  
-  // SEO interfaces
-  SEOConfig,
-  
-  // Performance interfaces
-  PerformanceConfig,
-  
-  // Utility types
-  PartialBy,
-  RequiredBy,
-  PickBy,
-  OmitBy,
-  ComponentProps,
-  FunctionParameters,
-  FunctionReturnType,
-};

@@ -188,7 +188,7 @@ export function useScrollAnimation(options: ScrollAnimationOptions = {}): Scroll
   }, []);
 
   return {
-    ref,
+    ref: ref as React.RefObject<HTMLElement>,
     isInView,
     hasTriggered,
     triggerAnimation,
@@ -272,7 +272,6 @@ export function useParallax(speed: number = 0.5, enabled: boolean = true) {
     const updateParallax = () => {
       if (!ref.current) return;
       
-      const rect = ref.current.getBoundingClientRect();
       const scrolled = window.pageYOffset;
       const rate = scrolled * -speed;
       
@@ -296,7 +295,7 @@ export function useParallax(speed: number = 0.5, enabled: boolean = true) {
   }, [speed, enabled]);
 
   return {
-    ref,
+    ref: ref as React.RefObject<HTMLElement>,
     offset,
     style: {
       transform: `translateY(${offset}px)`

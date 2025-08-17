@@ -24,11 +24,22 @@ export {
 } from './useTheme';
 
 // ============================================================================
+// PERFORMANCE HOOKS
+// ============================================================================
+
+export {
+  usePerformance,
+  type PerformanceMetrics,
+  type PerformanceOptions
+} from './usePerformance';
+
+// ============================================================================
 // DEFAULT EXPORTS
 // ============================================================================
 
 export { default as ScrollAnimationHooks } from './useScrollAnimation';
 export { default as ThemeHooks } from './useTheme';
+export { default as PerformanceHooks } from './usePerformance';
 
 // ============================================================================
 // HOOK CATEGORIES
@@ -55,11 +66,19 @@ export const themeHooks = {
 };
 
 /**
+ * All performance related hooks
+ */
+export const performanceHooks = {
+  usePerformance: () => import('./usePerformance').then(m => m.usePerformance)
+};
+
+/**
  * All available hooks
  */
 export const allHooks = {
   ...scrollHooks,
-  ...themeHooks
+  ...themeHooks,
+  ...performanceHooks
 };
 
 // ============================================================================
@@ -112,6 +131,35 @@ export const allHooks = {
  *     >
  *       {isDark ? '☀️ Light Mode' : '🌙 Dark Mode'}
  *     </button>
+ *   );
+ * }
+ * ```
+ */
+
+/**
+ * Example usage of performance hooks:
+ * 
+ * ```tsx
+ * import { usePerformance } from '@/hooks';
+ * 
+ * function PerformanceMonitor() {
+ *   const { metrics, startMonitoring, stopMonitoring } = usePerformance({
+ *     monitorWebVitals: true,
+ *     monitorMemory: true,
+ *     onMetricsChange: (metrics) => console.log('Performance:', metrics)
+ *   });
+ *   
+ *   useEffect(() => {
+ *     startMonitoring();
+ *     return () => stopMonitoring();
+ *   }, [startMonitoring, stopMonitoring]);
+ *   
+ *   return (
+ *     <div>
+ *       <p>FCP: {metrics.fcp ? `${metrics.fcp.toFixed(0)}ms` : 'N/A'}</p>
+ *       <p>LCP: {metrics.lcp ? `${metrics.lcp.toFixed(0)}ms` : 'N/A'}</p>
+ *       <p>FPS: {metrics.fps || 'N/A'}</p>
+ *     </div>
  *   );
  * }
  * ```

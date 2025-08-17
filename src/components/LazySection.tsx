@@ -1,5 +1,5 @@
-import React, { Suspense, lazy, useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { Suspense, useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 /**
  * Props for the LazySection component
@@ -26,7 +26,9 @@ interface LazySectionProps {
 /**
  * Default loading fallback component
  */
-const DefaultFallback: React.FC<{ text?: string }> = ({ text = 'Loading...' }) => (
+const DefaultFallback: React.FC<{ text?: string }> = ({
+  text = "Loading...",
+}) => (
   <div className="flex items-center justify-center min-h-[400px] bg-gray-50 dark:bg-gray-800">
     <div className="text-center">
       <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
@@ -38,9 +40,9 @@ const DefaultFallback: React.FC<{ text?: string }> = ({ text = 'Loading...' }) =
 /**
  * Default error fallback component
  */
-const DefaultError: React.FC<{ text?: string; onRetry?: () => void }> = ({ 
-  text = 'Failed to load content', 
-  onRetry 
+const DefaultError: React.FC<{ text?: string; onRetry?: () => void }> = ({
+  text = "Failed to load content",
+  onRetry,
 }) => (
   <div className="flex items-center justify-center min-h-[400px] bg-red-50 dark:bg-red-900/20">
     <div className="text-center">
@@ -60,10 +62,10 @@ const DefaultError: React.FC<{ text?: string; onRetry?: () => void }> = ({
 
 /**
  * LazySection Component
- * 
+ *
  * This component implements lazy loading for sections to improve performance.
  * It only loads the component when it comes into view, reducing initial bundle size.
- * 
+ *
  * @example
  * ```tsx
  * <LazySection
@@ -78,7 +80,7 @@ const LazySection: React.FC<LazySectionProps> = ({
   componentProps = {},
   fallback,
   preload = false,
-  observerOptions = { threshold: 0.1, rootMargin: '50px' },
+  observerOptions = { threshold: 0.1, rootMargin: "50px" },
   animationVariants,
   loadingText,
   errorText,
@@ -87,22 +89,24 @@ const LazySection: React.FC<LazySectionProps> = ({
   const [isVisible, setIsVisible] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
-  const [Component, setComponent] = useState<React.ComponentType<any> | null>(null);
+  const [Component, setComponent] = useState<React.ComponentType<any> | null>(
+    null
+  );
 
   // Lazy load the component
   const loadComponent = async () => {
     try {
       // If component is already a component, use it directly
-      if (typeof component === 'function') {
+      if (typeof component === "function") {
         setComponent(() => component);
       } else {
         // If it's a dynamic import, handle it
         const module = await component;
-        setComponent(() => module.default || module);
+        setComponent(() => (module as any).default || module);
       }
       setIsLoaded(true);
     } catch (error) {
-      console.error('Failed to load component:', error);
+      console.error("Failed to load component:", error);
       setHasError(true);
     }
   };
@@ -114,19 +118,16 @@ const LazySection: React.FC<LazySectionProps> = ({
       return;
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-            observer.disconnect();
-          }
-        });
-      },
-      observerOptions
-    );
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      });
+    }, observerOptions);
 
-    const element = document.createElement('div');
+    const element = document.createElement("div");
     observer.observe(element);
 
     return () => observer.disconnect();
@@ -150,9 +151,7 @@ const LazySection: React.FC<LazySectionProps> = ({
   // Render loading state
   if (!isLoaded && !hasError) {
     return (
-      <div {...props}>
-        {fallback || <DefaultFallback text={loadingText} />}
-      </div>
+      <div {...props}>{fallback || <DefaultFallback text={loadingText} />}</div>
     );
   }
 
@@ -177,7 +176,9 @@ const LazySection: React.FC<LazySectionProps> = ({
         initial={animationVariants?.initial || { opacity: 0, y: 20 }}
         animate={animationVariants?.animate || { opacity: 1, y: 0 }}
         exit={animationVariants?.exit || { opacity: 0, y: -20 }}
-        transition={animationVariants?.transition || { duration: 0.6, ease: 'easeOut' }}
+        transition={
+          animationVariants?.transition || { duration: 0.6, ease: "easeOut" }
+        }
       >
         <Suspense fallback={fallback || <DefaultFallback text={loadingText} />}>
           <Component {...componentProps} />

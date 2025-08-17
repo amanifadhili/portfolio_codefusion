@@ -545,8 +545,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ className = "" }) => {
                         <Button
                           variant="outline"
                           size="sm"
-                          onClick={(e) => {
-                            e.stopPropagation();
+                          onClick={() => {
                             handleExternalLink(project.liveUrl!);
                           }}
                           className="flex-1"
@@ -559,8 +558,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ className = "" }) => {
                         <Button
                           variant="outline"
                           size="sm"
-                          onClick={(e) => {
-                            e.stopPropagation();
+                          onClick={() => {
                             handleExternalLink(project.githubUrl!);
                           }}
                           className="flex-1"

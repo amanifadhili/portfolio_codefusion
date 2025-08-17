@@ -63,7 +63,7 @@ const SectionTitle: React.FC<SectionTitleProps> = ({
       y: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     },
   };
@@ -76,7 +76,7 @@ const SectionTitle: React.FC<SectionTitleProps> = ({
       transition: {
         duration: 0.6,
         delay: 0.1,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     },
   };
@@ -89,7 +89,7 @@ const SectionTitle: React.FC<SectionTitleProps> = ({
       transition: {
         duration: 0.6,
         delay: 0.2,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     },
   };
@@ -101,7 +101,7 @@ const SectionTitle: React.FC<SectionTitleProps> = ({
       transition: {
         duration: 0.6,
         delay: 0.3,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     },
   };

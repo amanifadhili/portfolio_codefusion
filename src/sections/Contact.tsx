@@ -67,7 +67,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ className = "" }) => {
   const [submitStatus, setSubmitStatus] = useState<
     "idle" | "success" | "error"
   >("idle");
-  const [activeTab, setActiveTab] = useState<"contact" | "info">("contact");
+  // const [activeTab, setActiveTab] = useState<"contact" | "info">("contact");
 
   // Animation variants
   const containerVariants = {

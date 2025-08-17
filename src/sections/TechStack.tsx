@@ -5,7 +5,7 @@ import {
   Database,
   Cloud,
   Smartphone,
-  Cpu,
+  // Cpu,
   Brain,
   Wifi,
   Globe,
@@ -425,21 +425,21 @@ const TechStack: React.FC<TechStackProps> = ({ className = "" }) => {
     setHoveredTech(techId);
   };
 
-  // Get proficiency color
-  const getProficiencyColor = (proficiency: string) => {
-    switch (proficiency) {
-      case "expert":
-        return "text-green-600 dark:text-green-400";
-      case "advanced":
-        return "text-blue-600 dark:text-blue-400";
-      case "intermediate":
-        return "text-yellow-600 dark:text-yellow-400";
-      case "beginner":
-        return "text-gray-600 dark:text-gray-400";
-      default:
-        return "text-gray-600 dark:text-gray-400";
-    }
-  };
+  // Get proficiency color (unused - commented out)
+  // const getProficiencyColor = (proficiency: string) => {
+  //   switch (proficiency) {
+  //     case "expert":
+  //       return "text-green-600 dark:text-green-400";
+  //     case "advanced":
+  //       return "text-blue-600 dark:text-blue-400";
+  //     case "intermediate":
+  //       return "text-yellow-600 dark:text-yellow-400";
+  //     case "beginner":
+  //       return "text-gray-600 dark:text-gray-400";
+  //     default:
+  //       return "text-gray-600 dark:text-gray-400";
+  //     }
+  //   };
 
   // Get proficiency badge color
   const getProficiencyBadgeColor = (proficiency: string) => {

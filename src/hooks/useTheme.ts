@@ -232,7 +232,7 @@ export function useThemeTransition() {
  * Provides utilities for saving and restoring theme preferences
  */
 export function useThemePersistence() {
-  const { theme, setTheme } = useCustomTheme();
+  const { theme } = useCustomTheme();
 
   /**
    * Save theme preference to localStorage

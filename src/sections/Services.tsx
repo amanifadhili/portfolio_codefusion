@@ -6,7 +6,7 @@ import {
   Globe,
   Brain,
   Wifi,
-  Database,
+  // Database,
   Shield,
   Zap,
   ArrowRight,
@@ -225,7 +225,7 @@ const Services: React.FC<ServicesProps> = ({ className = "" }) => {
   };
 
   // Handle learn more button click
-  const handleLearnMore = (serviceId: string) => {
+  const handleLearnMore = (_serviceId: string) => {
     const portfolioSection = document.querySelector("#portfolio");
     if (portfolioSection) {
       portfolioSection.scrollIntoView({
@@ -277,7 +277,7 @@ const Services: React.FC<ServicesProps> = ({ className = "" }) => {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          {services.map((service, index) => (
+          {services.map((service) => (
             <motion.div
               key={service.id}
               variants={cardVariants}

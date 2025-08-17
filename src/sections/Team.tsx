@@ -14,7 +14,7 @@ import {
   TrendingUp,
   Star,
   ArrowRight,
-  ExternalLink,
+  // ExternalLink,
   MapPin,
   Calendar,
   Code,
@@ -26,7 +26,7 @@ import {
 import Container from "../components/ui/Container";
 import SectionTitle from "../components/ui/SectionTitle";
 import Card from "../components/ui/Card";
-import Button from "../components/ui/Button";
+// import Button from "../components/ui/Button";
 
 export interface TeamSectionProps {
   className?: string;
@@ -65,7 +65,7 @@ export interface TeamMember {
 
 const TeamSection: React.FC<TeamSectionProps> = ({ className = "" }) => {
   const [hoveredMember, setHoveredMember] = useState<string | null>(null);
-  const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
+  // const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
 
   // Animation variants
   const containerVariants = {
@@ -368,8 +368,8 @@ const TeamSection: React.FC<TeamSectionProps> = ({ className = "" }) => {
   };
 
   // Handle member selection
-  const handleMemberSelect = (member: TeamMember) => {
-    setSelectedMember(member);
+  const handleMemberSelect = (_member: TeamMember) => {
+    // setSelectedMember(member);
   };
 
   // Handle social link click
@@ -377,33 +377,33 @@ const TeamSection: React.FC<TeamSectionProps> = ({ className = "" }) => {
     window.open(url, "_blank", "noopener,noreferrer");
   };
 
-  // Get skill level color
-  const getSkillLevelColor = (level: string) => {
-    switch (level) {
-      case "expert":
-        return "text-green-600 dark:text-green-400";
-      case "advanced":
-        return "text-blue-600 dark:text-blue-400";
-      case "intermediate":
-        return "text-yellow-600 dark:text-yellow-400";
-      default:
-        return "text-gray-600 dark:text-gray-400";
-    }
-  };
+  // Get skill level color (unused - commented out)
+  // const getSkillLevelColor = (level: string) => {
+  //   switch (level) {
+  //     case "expert":
+  //       return "text-green-600 dark:text-green-400";
+  //     case "advanced":
+  //       return "text-blue-600 dark:text-blue-400";
+  //     case "intermediate":
+  //       return "text-yellow-600 dark:text-yellow-400";
+  //     default:
+  //       return "text-gray-600 dark:text-gray-400";
+  //   }
+  // };
 
-  // Get skill level badge color
-  const getSkillLevelBadgeColor = (level: string) => {
-    switch (level) {
-      case "expert":
-        return "bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400";
-      case "advanced":
-        return "bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400";
-      case "intermediate":
-        return "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400";
-      default:
-        return "bg-gray-100 text-gray-800 dark:bg-gray-900/20 dark:text-gray-400";
-    }
-  };
+  // Get skill level badge color (unused - commented out)
+  // const getSkillLevelBadgeColor = (level: string) => {
+  //   switch (level) {
+  //     case "expert":
+  //       return "bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400";
+  //     case "advanced":
+  //       return "bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400";
+  //     case "intermediate":
+  //       return "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400";
+  //     default:
+  //       return "bg-gray-100 text-gray-800 dark:bg-gray-900/20 dark:text-gray-400";
+  //   }
+  // };
 
   return (
     <section
