@@ -125,18 +125,18 @@
   - [x] Centered layout
 
 ### **4.2 Build Layout Components**
-- [ ] **Navbar Component:**
-  - [ ] Sticky positioning
-  - [ ] Mobile menu (hamburger)
-  - [ ] Dark/light mode toggle
-  - [ ] Smooth scroll navigation
-  - [ ] Responsive design
+- [x] **Navbar Component:**
+  - [x] Sticky positioning
+  - [x] Mobile menu (hamburger)
+  - [x] Dark/light mode toggle
+  - [x] Smooth scroll navigation
+  - [x] Responsive design
 
-- [ ] **Footer Component:**
-  - [ ] Quick links
-  - [ ] Social media icons
-  - [ ] Copyright notice
-  - [ ] Company information
+- [x] **Footer Component:**
+  - [x] Quick links
+  - [x] Social media icons
+  - [x] Copyright notice
+  - [x] Company information
 
 ---
 
