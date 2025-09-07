@@ -13,7 +13,7 @@ export interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ className = "" }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const { isDark } = useCustomTheme();
+  const { isDark, toggleTheme } = useCustomTheme();
 
   // Navigation items
   const navItems = [
@@ -119,7 +119,7 @@ const Navbar: React.FC<NavbarProps> = ({ className = "" }) => {
                 size="md"
                 variant="minimal"
                 isDark={isDark}
-                onToggle={() => {}}
+                onToggle={toggleTheme}
               />
               <Button
                 variant="primary"
@@ -136,7 +136,7 @@ const Navbar: React.FC<NavbarProps> = ({ className = "" }) => {
                 size="sm"
                 variant="minimal"
                 isDark={isDark}
-                onToggle={() => {}}
+                onToggle={toggleTheme}
               />
               <motion.button
                 className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
