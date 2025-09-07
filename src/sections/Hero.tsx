@@ -1,14 +1,62 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Play, ChevronDown } from "lucide-react";
 import Container from "../components/ui/Container";
 import Button from "../components/ui/Button";
+import useBackgroundImages from "../hooks/useBackgroundImages";
+
+// Import all background images
+import img1 from "../assets/background/img1.jpg";
+import img2 from "../assets/background/img2.jpg";
+import img3 from "../assets/background/img3.jpg";
+import img4 from "../assets/background/img4.jpg";
+import img5 from "../assets/background/img5.jpg";
+import img6 from "../assets/background/img6.jpg";
+import img7 from "../assets/background/img7.jpg";
+import img8 from "../assets/background/img8.jpg";
+import img9 from "../assets/background/img9.jpg";
+import img10 from "../assets/background/img10.jpg";
+import img11 from "../assets/background/img11.jpg";
+import img12 from "../assets/background/img12.jpg";
+import img13 from "../assets/background/img13.jpg";
+import img14 from "../assets/background/img14.jpg";
+import img15 from "../assets/background/img15.jpg";
 
 export interface HeroProps {
   className?: string;
 }
 
 const Hero: React.FC<HeroProps> = ({ className = "" }) => {
+  // Background images array
+  const backgroundImages = [
+    img1,
+    img2,
+    img3,
+    img4,
+    img5,
+    img6,
+    img7,
+    img8,
+    img9,
+    img10,
+    img11,
+    img12,
+    img13,
+    img14,
+    img15,
+  ];
+
+  // Use custom hook for background image management
+  const {
+    currentIndex: currentBgIndex,
+    currentImage,
+    isLoading,
+    totalImages,
+    goToNext: handleNextBackground,
+    goToPrevious: handlePrevBackground,
+    goToIndex: setCurrentBgIndex,
+  } = useBackgroundImages(backgroundImages, 5000, true);
+
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -33,17 +81,6 @@ const Hero: React.FC<HeroProps> = ({ className = "" }) => {
     },
   };
 
-  const floatingVariants = {
-    animate: {
-      y: [-10, 10, -10],
-      transition: {
-        duration: 4,
-        repeat: Infinity,
-        ease: "easeInOut" as const,
-      },
-    },
-  };
-
   const scrollIndicatorVariants = {
     animate: {
       y: [0, 10, 0],
@@ -51,6 +88,27 @@ const Hero: React.FC<HeroProps> = ({ className = "" }) => {
       transition: {
         duration: 2,
         repeat: Infinity,
+        ease: "easeInOut" as const,
+      },
+    },
+  };
+
+  // Background image transition variants
+  const backgroundImageVariants = {
+    enter: {
+      opacity: 1,
+      scale: 1.05,
+      transition: {
+        duration: 1.0,
+        ease: "easeInOut" as const,
+        delay: 0.2,
+      },
+    },
+    exit: {
+      opacity: 0,
+      scale: 1,
+      transition: {
+        duration: 1.0,
         ease: "easeInOut" as const,
       },
     },
@@ -89,24 +147,40 @@ const Hero: React.FC<HeroProps> = ({ className = "" }) => {
       id="home"
       className={`relative min-h-screen flex items-center justify-center overflow-hidden ${className}`}
     >
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary-900 via-secondary-900 to-accent-900" />
+      {/* Dynamic Background Images */}
+      <div className="absolute inset-0">
+        <AnimatePresence>
+          <motion.div
+            key={currentBgIndex}
+            className="absolute inset-0 w-full h-full"
+            variants={backgroundImageVariants}
+            initial="exit"
+            animate="enter"
+            exit="exit"
+          >
+            <img
+              src={currentImage}
+              alt={`Background ${currentBgIndex + 1}`}
+              className="w-full h-full object-cover"
+              loading="eager"
+            />
+          </motion.div>
+        </AnimatePresence>
 
-      {/* Animated Background Shapes */}
-      <motion.div
-        className="absolute inset-0 opacity-10"
-        variants={floatingVariants}
-        animate="animate"
-      >
-        <div className="absolute top-20 left-20 w-72 h-72 bg-primary-500 rounded-full blur-3xl" />
-        <div className="absolute top-40 right-20 w-96 h-96 bg-secondary-500 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 left-1/2 w-80 h-80 bg-accent-500 rounded-full blur-3xl" />
-      </motion.div>
-
-      {/* Grid Pattern Overlay */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+        {/* Subtle overlay for content visibility */}
+        <div className="absolute inset-0 bg-black/80" />
       </div>
+
+      {/* Loading State */}
+      {isLoading && (
+        <div className="absolute inset-0 bg-gray-900 flex items-center justify-center">
+          <motion.div
+            className="w-16 h-16 border-4 border-white/20 border-t-white rounded-full"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+          />
+        </div>
+      )}
 
       {/* Main Content */}
       <Container className="relative z-10 text-center">
@@ -116,41 +190,28 @@ const Hero: React.FC<HeroProps> = ({ className = "" }) => {
           initial="hidden"
           animate="visible"
         >
-          {/* Badge */}
-          <motion.div
-            className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 text-sm font-medium mb-8"
-            variants={itemVariants}
-          >
-            <span className="w-2 h-2 bg-primary-400 rounded-full mr-2 animate-pulse" />
-            Innovating the Future of Technology
-          </motion.div>
-
           {/* Main Heading */}
           <motion.h1
-            className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight"
+            className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight drop-shadow-lg"
             variants={itemVariants}
           >
-            <span className="bg-gradient-to-r from-white via-primary-100 to-secondary-100 bg-clip-text text-transparent">
-              Code
-            </span>
-            <span className="bg-gradient-to-r from-secondary-100 via-accent-100 to-white bg-clip-text text-transparent">
-              Fusion
-            </span>
+            <span className="text-white">Code</span>
+            <span className="text-white">Fusion</span>
           </motion.h1>
 
           {/* Subtitle */}
           <motion.p
-            className="text-xl md:text-2xl lg:text-3xl text-white/80 mb-8 max-w-4xl mx-auto leading-relaxed"
+            className="text-xl md:text-2xl lg:text-3xl text-white mb-8 max-w-4xl mx-auto leading-relaxed drop-shadow-md"
             variants={itemVariants}
           >
             Empowering businesses with cutting-edge{" "}
-            <span className="text-primary-300 font-semibold">IoT</span>,{" "}
-            <span className="text-secondary-300 font-semibold">
+            <span className="text-yellow-300 font-semibold">IoT</span>,{" "}
+            <span className="text-blue-300 font-semibold">
               Embedded Systems
             </span>
-            , <span className="text-accent-300 font-semibold">Mobile Apps</span>
-            , and{" "}
-            <span className="text-primary-300 font-semibold">
+            , <span className="text-green-300 font-semibold">Mobile Apps</span>,
+            and{" "}
+            <span className="text-purple-300 font-semibold">
               Machine Learning
             </span>{" "}
             solutions
@@ -158,7 +219,7 @@ const Hero: React.FC<HeroProps> = ({ className = "" }) => {
 
           {/* Description */}
           <motion.p
-            className="text-lg text-white/60 mb-12 max-w-3xl mx-auto leading-relaxed"
+            className="text-lg text-white mb-12 max-w-3xl mx-auto leading-relaxed drop-shadow-sm"
             variants={itemVariants}
           >
             We transform ideas into reality, building innovative solutions that
@@ -192,47 +253,20 @@ const Hero: React.FC<HeroProps> = ({ className = "" }) => {
             </Button>
           </motion.div>
 
-          {/* Stats */}
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-16"
-            variants={itemVariants}
-          >
-            {[
-              { number: "150+", label: "Projects Completed" },
-              { number: "50+", label: "Happy Clients" },
-              { number: "5+", label: "Years Experience" },
-            ].map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                className="text-center"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-              >
-                <div className="text-3xl md:text-4xl font-bold text-white mb-2">
-                  {stat.number}
-                </div>
-                <div className="text-white/70 text-sm md:text-base">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-
           {/* Trust Indicators */}
           <motion.div className="text-center" variants={itemVariants}>
-            <p className="text-white/50 text-sm mb-4">
+            <p className="text-white text-sm mb-4 drop-shadow-sm">
               Trusted by leading companies worldwide
             </p>
-            <div className="flex items-center justify-center space-x-8 opacity-40">
+            <div className="flex items-center justify-center space-x-8">
               {/* Placeholder company logos - these would be replaced with actual logos */}
               {["TechCorp", "InnovateLab", "FutureSystems", "DigitalFlow"].map(
                 (company, index) => (
                   <motion.div
                     key={company}
-                    className="text-white/60 font-medium text-lg"
+                    className="text-white font-medium text-lg drop-shadow-sm"
                     initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 0.6, x: 0 }}
+                    animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 1.2 + index * 0.1 }}
                   >
                     {company}
@@ -253,39 +287,45 @@ const Hero: React.FC<HeroProps> = ({ className = "" }) => {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
       >
-        <div className="flex flex-col items-center text-white/60 hover:text-white transition-colors duration-200">
-          <span className="text-sm mb-2">Scroll Down</span>
-          <ChevronDown className="w-6 h-6" />
+        <div className="flex flex-col items-center text-white hover:text-white transition-colors duration-200 drop-shadow-md">
+          <span className="text-sm mb-2 drop-shadow-sm">Scroll Down</span>
+          <ChevronDown className="w-6 h-6 drop-shadow-sm" />
         </div>
       </motion.div>
 
-      {/* Floating Elements */}
-      <motion.div
-        className="absolute top-1/4 right-10 w-20 h-20 bg-primary-500/20 rounded-full blur-xl"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.6, 0.3],
-        }}
-        transition={{
-          duration: 3,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
+      {/* Background Navigation Controls */}
+      <div className="absolute top-1/2 right-4 transform -translate-y-1/2 flex flex-col gap-2 opacity-0 hover:opacity-100 transition-opacity duration-300">
+        <button
+          onClick={handlePrevBackground}
+          className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors duration-200"
+          aria-label="Previous background"
+        >
+          <ChevronDown className="w-5 h-5 rotate-90" />
+        </button>
+        <button
+          onClick={handleNextBackground}
+          className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors duration-200"
+          aria-label="Next background"
+        >
+          <ChevronDown className="w-5 h-5 -rotate-90" />
+        </button>
+      </div>
 
-      <motion.div
-        className="absolute bottom-1/4 left-10 w-16 h-16 bg-secondary-500/20 rounded-full blur-xl"
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.2, 0.5, 0.2],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1,
-        }}
-      />
+      {/* Background Image Indicator */}
+      <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 flex items-center gap-2">
+        {Array.from({ length: totalImages }, (_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentBgIndex(index)}
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              index === currentBgIndex
+                ? "bg-white scale-125"
+                : "bg-white/40 hover:bg-white/60"
+            }`}
+            aria-label={`Go to background ${index + 1}`}
+          />
+        ))}
+      </div>
     </section>
   );
 };

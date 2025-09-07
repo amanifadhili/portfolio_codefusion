@@ -24,6 +24,9 @@ import SectionTitle from "../components/ui/SectionTitle";
 import Card from "../components/ui/Card";
 import Button from "../components/ui/Button";
 
+// Import background image
+import img11 from "../assets/background/img11.jpg";
+
 export interface PortfolioProps {
   className?: string;
 }
@@ -377,9 +380,23 @@ const Portfolio: React.FC<PortfolioProps> = ({ className = "" }) => {
   return (
     <section
       id="portfolio"
-      className={`py-20 bg-gray-50 dark:bg-gray-900 ${className}`}
+      className={`relative py-20 bg-gray-50 dark:bg-gray-900 overflow-hidden ${className}`}
     >
-      <Container>
+      {/* Background Image with Parallax */}
+      <div className="absolute inset-0">
+        <div
+          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url(${img11})`,
+            transform: "translateZ(0)",
+            willChange: "transform",
+          }}
+        />
+        {/* Overlay for content readability */}
+        <div className="absolute inset-0 bg-gray-50/70 dark:bg-gray-900/70" />
+      </div>
+
+      <Container className="relative z-10">
         {/* Section Header */}
         <motion.div
           className="text-center mb-16"

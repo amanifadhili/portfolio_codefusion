@@ -15,6 +15,9 @@ import SectionTitle from "../components/ui/SectionTitle";
 import Card from "../components/ui/Card";
 import Button from "../components/ui/Button";
 
+// Import background image
+import img3 from "../assets/background/img3.jpg";
+
 export interface AboutProps {
   className?: string;
 }
@@ -131,9 +134,23 @@ const About: React.FC<AboutProps> = ({ className = "" }) => {
   return (
     <section
       id="about"
-      className={`py-20 bg-gray-50 dark:bg-gray-900 ${className}`}
+      className={`relative py-20 bg-gray-50 dark:bg-gray-900 overflow-hidden ${className}`}
     >
-      <Container>
+      {/* Background Image with Parallax */}
+      <div className="absolute inset-0">
+        <div
+          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url(${img3})`,
+            transform: "translateZ(0)",
+            willChange: "transform",
+          }}
+        />
+        {/* Overlay for content readability */}
+        <div className="absolute inset-0 bg-white/70 dark:bg-gray-900/70" />
+      </div>
+
+      <Container className="relative z-10">
         {/* Section Header */}
         <motion.div
           className="text-center mb-16"

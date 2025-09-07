@@ -193,60 +193,25 @@ function App() {
           </section>
 
           {/* About Section */}
-          <section
-            id="about"
-            className="relative py-20 bg-gray-50 dark:bg-gray-800"
-          >
-            <About />
-          </section>
+          <About />
 
           {/* Services Section */}
-          <section
-            id="services"
-            className="relative py-20 bg-white dark:bg-gray-900"
-          >
-            <Services />
-          </section>
+          <Services />
 
           {/* Portfolio Section */}
-          <section
-            id="portfolio"
-            className="relative py-20 bg-gray-50 dark:bg-gray-800"
-          >
-            <Portfolio />
-          </section>
+          <Portfolio />
 
           {/* Tech Stack Section */}
-          <section
-            id="tech-stack"
-            className="relative py-20 bg-white dark:bg-gray-900"
-          >
-            <TechStack />
-          </section>
+          <TechStack />
 
           {/* Testimonials Section */}
-          <section
-            id="testimonials"
-            className="relative py-20 bg-gray-50 dark:bg-gray-800"
-          >
-            <Testimonials />
-          </section>
+          <Testimonials />
 
           {/* Team Section */}
-          <section
-            id="team"
-            className="relative py-20 bg-white dark:bg-gray-900"
-          >
-            <Team />
-          </section>
+          <Team />
 
           {/* Contact Section */}
-          <section
-            id="contact"
-            className="relative py-20 bg-gray-50 dark:bg-gray-800"
-          >
-            <Contact />
-          </section>
+          <Contact />
         </main>
 
         {/* Footer */}
