@@ -12,10 +12,15 @@
   "dependencies": {
     "@fontsource/inter": "^5.2.6",
     "@fontsource/poppins": "^5.2.6",
+    "@radix-ui/react-avatar": "^1.1.10",
+    "@radix-ui/react-slot": "^1.2.3",
+    "class-variance-authority": "^0.7.1",
     "framer-motion": "^12.23.12",
     "lucide-react": "^0.539.0",
+    "motion": "^12.23.12",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",

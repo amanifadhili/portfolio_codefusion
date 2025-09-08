@@ -13,6 +13,9 @@ import Team from "./sections/Team";
 import Contact from "./sections/Contact";
 import Footer from "./sections/Footer";
 
+// Import 21st.dev test portfolio
+import App21st from "./test-portfolio/App21st";
+
 // Import utility functions and testing tools
 import { applyBrowserClasses } from "./utils/browserSupport";
 import usePerformance from "./hooks/usePerformance";
@@ -28,6 +31,7 @@ import ResponsiveTester from "./components/ResponsiveTester";
 function App() {
   const [showResponsiveTester, setShowResponsiveTester] = useState(false);
   const [showPerformancePanel, setShowPerformancePanel] = useState(false);
+  const [show21stTest, setShow21stTest] = useState(false);
 
   // Performance monitoring
   const { metrics, startMonitoring } = usePerformance({
@@ -151,6 +155,12 @@ function App() {
         e.preventDefault();
         setShowPerformancePanel((prev) => !prev);
       }
+
+      // Ctrl/Cmd + Shift + 2 to toggle 21st.dev test portfolio
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === "2") {
+        e.preventDefault();
+        setShow21stTest((prev) => !prev);
+      }
     };
 
     document.addEventListener("keydown", handleKeyDown);
@@ -178,6 +188,11 @@ function App() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Show 21st.dev test portfolio if enabled
+  if (show21stTest) {
+    return <App21st />;
+  }
 
   return (
     <ThemeProvider>
@@ -281,6 +296,27 @@ function App() {
                   strokeLinejoin="round"
                   strokeWidth={2}
                   d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                />
+              </svg>
+            </button>
+
+            {/* 21st.dev Test Portfolio Toggle */}
+            <button
+              onClick={() => setShow21stTest((prev) => !prev)}
+              className="fixed bottom-8 left-40 z-50 p-3 bg-purple-600 hover:bg-purple-700 text-white rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-purple-300"
+              title="Toggle 21st.dev Test Portfolio (Ctrl+Shift+2)"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
                 />
               </svg>
             </button>
